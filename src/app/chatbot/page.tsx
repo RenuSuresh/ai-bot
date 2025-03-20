@@ -64,10 +64,9 @@ export default function ChatbotPage() {
 				),
 			};
 		} else {
-			botResponse = {
-				text: "I can show you various UI components. Try asking for 'button' or 'product card'!",
-				isBot: true,
-			};
+			<div>
+				<h1>Hello</h1>
+			</div>;
 		}
 
 		setMessages((prev) => [...prev, botResponse]);
