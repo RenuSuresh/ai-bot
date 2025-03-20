@@ -22,7 +22,7 @@
   }
 
   // Fetch the Next.js manifest to identify chunks and CSS files
-  fetch("https://ai-bot-renu.netlify.app//_next/static/build-manifest.json")
+  fetch("https://ai-bot-renu.netlify.app/_next/static/build-manifest.json")
     .then((response) => response.json())
     .then((manifest) => {
       // Load all JavaScript chunks
