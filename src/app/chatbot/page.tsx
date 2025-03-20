@@ -1,21 +1,14 @@
 "use client";
+
 import React from "react";
-import dynamic from "next/dynamic";
+import { Button } from "@/components/ui/Button";
+import { ProductCard } from "@/components/ui/ProductCard";
+import { ChatMessage } from "@/components/Chat/ChatMessage";
 import { useTheme } from "@/theme/ThemeContext";
 import { VendorType } from "@/theme/theme.config";
 
-const Button = dynamic(() =>
-	import("@/components/ui/Button").then((mod) => mod.Button)
-);
-const ProductCard = dynamic(() =>
-	import("@/components/ui/ProductCard").then((mod) => mod.ProductCard)
-);
-const ChatMessage = dynamic(() =>
-	import("@/components/Chat/ChatMessage").then((mod) => mod.ChatMessage)
-);
-
-export default function Home() {
-	const { setVendor, theme } = useTheme();
+export default function ChatbotPage() {
+	const { setVendor, theme, vendor } = useTheme();
 	const [messages, setMessages] = React.useState<
 		Array<{
 			text: string;
@@ -38,13 +31,10 @@ export default function Home() {
 
 		// Simulate bot response with components
 		const lowerInput = input.toLowerCase();
-		let botResponse: {
-			text: string;
-			isBot: boolean;
-			component?: React.ReactNode;
-		} = {
+		let botResponse = {
 			text: "",
 			isBot: true,
+			component: null as React.ReactNode,
 		};
 
 		if (lowerInput.includes("button")) {
@@ -91,6 +81,7 @@ export default function Home() {
 		>
 			<div className='flex justify-end mb-4 max-w-4xl mx-auto w-full'>
 				<select
+					value={vendor}
 					onChange={(e) => setVendor(e.target.value as VendorType)}
 					className='rounded-lg border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none text-sm'
 					style={{ borderColor: theme.border, color: theme.text }}
